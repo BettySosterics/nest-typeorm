@@ -1,17 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from './role.enum';
 
-@Entity()
-export class User {
+@Entity('user')
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   username: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column()
@@ -20,9 +21,6 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
-  role: string; // this should be admin or user
-
-  @Column()
-  photo: string; // how to upload?
+  @Column({ type: 'enum', enum: Role, default: Role.USER })
+  role: Role; // this should be admin or user
 }
