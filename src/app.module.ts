@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -20,6 +21,7 @@ import { UserEntity } from './auth/models/user.entity';
       synchronize: true,
     }),
     AuthModule,
+    MulterModule.register({ dest: './images' }),
   ],
   controllers: [AppController],
   providers: [AppService],
