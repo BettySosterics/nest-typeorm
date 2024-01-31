@@ -41,23 +41,39 @@ export const saveImageToStorage = {
 //   fullFilePath: string,
 // ): Observable<boolean> => {
 //   return from(FileType.fromFile(fullFilePath)).pipe(
-//     switchMap(
-//       (fileExtensionAndMimeType: {
-//         ext: validFileExtension;
-//         mime: validMimeType;
-//       }) => {
-//         if (!fileExtensionAndMimeType) return of(false);
+//     switchMap((fileExtensionAndMimeType: FileType.FileTypeResult | null) => {
+//       if (!fileExtensionAndMimeType) return of(false);
 
-//         const isFileTypeLegit = validFileExtensions.includes(
-//           fileExtensionAndMimeType.ext,
-//         );
-//         const isMimeTypeLegit = validMimeTypes.includes(
-//           fileExtensionAndMimeType.mime,
-//         );
-//         const isFileLegit = isFileTypeLegit && isMimeTypeLegit;
-//         return of(isFileLegit);
-//       },
-//     ),
+//       const isFileTypeLegit = validFileExtensions.includes(
+//         fileExtensionAndMimeType.ext as validFileExtension,
+//       );
+//       const isMimeTypeLegit = validMimeTypes.includes(
+//         fileExtensionAndMimeType.mime as validMimeType,
+//       );
+//       const isFileLegit = isFileTypeLegit && isMimeTypeLegit;
+//       return of(isFileLegit);
+//     }),
+//   );
+// };
+
+// export const isFileExtensionSafe = (
+//   fullFilePath: string,
+// ): Observable<boolean> => {
+//   return from(fs.promises.readFile(fullFilePath)).pipe(
+//     switchMap(async (buffer) => {
+//       const fileExtensionAndMimeType = await FileType.fromBuffer(buffer);
+//       if (!fileExtensionAndMimeType) return false;
+
+//       const isFileTypeLegit = validFileExtensions.includes(
+//         fileExtensionAndMimeType.ext as validFileExtension,
+//       );
+//       const isMimeTypeLegit = validMimeTypes.includes(
+//         fileExtensionAndMimeType.mime as validMimeType,
+//       );
+//       const isFileLegit = isFileTypeLegit && isMimeTypeLegit;
+
+//       return isFileLegit;
+//     }),
 //   );
 // };
 

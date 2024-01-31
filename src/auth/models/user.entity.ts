@@ -24,6 +24,6 @@ export class UserEntity {
   @Column({ nullable: true })
   imagePath: string;
 
-  @Column({ type: 'enum', enum: Role, default: Role.USER })
+  @Column({ type: 'enum', enum: Role })
   role: Role; // this should be admin or user
 }
