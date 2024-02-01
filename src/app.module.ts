@@ -21,7 +21,7 @@ import { UserEntity } from './auth/models/user.entity';
       synchronize: true,
     }),
     AuthModule,
-    MulterModule.register({ dest: './images' }),
+    MulterModule.register({ dest: './uploads' }),
   ],
   controllers: [AppController],
   providers: [AppService],

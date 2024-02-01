@@ -12,14 +12,14 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  // findUserById(id: number): Observable<User> {
-  //   return from(this.userRepository.findOne({ id })).pipe(
-  //     map((user: User) => {
-  //       delete user.password;
-  //       return user;
-  //     }),
-  //   );
-  // }
+  findUserById(id: number): Observable<User> {
+    return from(this.userRepository.findOneBy({ id })).pipe(
+      map((user: User) => {
+        delete user.password;
+        return user;
+      }),
+    );
+  }
 
   updateUserImageById(id: number, imagePath: string): Observable<UpdateResult> {
     const user: User = new UserEntity();

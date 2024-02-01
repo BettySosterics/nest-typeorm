@@ -56,7 +56,7 @@ export class UserController {
     const userId = req.user.id;
     return this.UserService.findImageNameByUserId(userId).pipe(
       switchMap((imageName: string) => {
-        return of(res.sendFile(imageName, { root: './images' }));
+        return of(res.sendFile(imageName, { root: './uploads' }));
       }),
     );
   }
