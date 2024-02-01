@@ -20,7 +20,8 @@ export class AuthService {
   }
 
   register(user: User): Observable<User> {
-    const { username, email, password, firstName, lastName } = user;
+    const { username, email, password, firstName, lastName, imagePath, role } =
+      user;
 
     return this.hashPassword(password).pipe(
       switchMap((hashedPassword: string) => {
@@ -31,6 +32,8 @@ export class AuthService {
             lastName,
             email,
             password: hashedPassword,
+            imagePath,
+            role,
           }),
         ).pipe(
           map((user: User) => {
@@ -52,6 +55,7 @@ export class AuthService {
           'user.lastName',
           'user.email',
           'user.password',
+          'user.imagePath',
           'user.role',
         ])
         .where('user.email = :email', { email })
